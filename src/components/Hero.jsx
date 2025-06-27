@@ -1,8 +1,14 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
+import { useRef } from "react";
+import { useMediaQuery } from "react-responsive";
 
 export default function Hero() {
+  const videoRef = useRef();
+
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
   useGSAP(() => {
     const heroSplit = new SplitText(".title", { type: "chars, words" });
     const paragraphSplit = new SplitText(".subtitle", { type: "lines, words" });
@@ -36,6 +42,30 @@ export default function Hero() {
       })
       .to(".right-leaf", { y: 200 }, 0)
       .to(".left-leaf", { y: -200 }, 0);
+
+    // Note the first property refer to the element we are animating and the second property is about the screen. startValue same for the endValue
+    // So what we are saying is that when the top of the video reach 50% down the screen, start the animation in the mobile version, similarly when the center of the video reaches 60% down the screen, start the animation in the desktop version
+    // The same goes for the endValue, when the bottom of the video reaches 120% past the top of the screen, end the animation in the mobile version, similarly when the bottom of the video reaches the top of the screen, end the animation in the desktop version
+
+    const startValue = isMobile ? "top 50%" : "center 60%";
+    const endValue = isMobile ? "120% top" : "bottom top";
+
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: "video", // The element that triggers the animation
+        start: startValue, // The animation starts when the top of the element reaches the top of the viewport
+        end: endValue, // The animation ends when the bottom of the element reaches the bottom of the viewport
+        scrub: true, // Enable scrubbing ( animation follows the scroll position )
+        pin: true, // Pin the animation to the top of the viewport
+      },
+    });
+
+    // When the video's metadata is loaded, the `onloadedmetadata` event is triggered, so we can start the animation when the video is ready
+    videoRef.current.onloadedmetadata = () => {
+      timeline.to(videoRef.current, {
+        currentTime: videoRef.current.duration,
+      });
+    };
   }, []);
   return (
     <>
@@ -72,6 +102,16 @@ export default function Hero() {
           </div>
         </div>
       </section>
+
+      <div className="video absolute inset-0">
+        <video
+          src="/videos/output.mp4"
+          ref={videoRef}
+          preload="auto"
+          muted
+          playsInline
+        />
+      </div>
     </>
   );
 }
