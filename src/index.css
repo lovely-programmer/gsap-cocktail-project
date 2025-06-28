@@ -65,7 +65,7 @@ body {
     @apply fixed z-50 w-full;
 
     div {
-      @apply flex md:flex-row flex-col md:justify-between items-center gap-5 py-5 lg:px-0 px-5 container mx-auto;
+      @apply flex md:flex-row flex-col md:justify-between items-center gap-5 py-5 px-5 container mx-auto;
     }
 
     p {
@@ -145,7 +145,7 @@ body {
     }
 
     .list {
-      @apply container mx-auto relative z-10 flex md:flex-row flex-col justify-between items-start gap-20 pt-40 2xl:px-0 px-5;
+      @apply container mx-auto relative z-10 flex md:flex-row flex-col justify-between items-start gap-20 pt-40 px-5;
 
       .popular {
         @apply space-y-8 w-full md:w-fit;
@@ -185,7 +185,7 @@ body {
     @apply min-h-screen py-28 2xl:px-0 px-5 container mx-auto;
 
     .content {
-      @apply grid grid-cols-1 lg:grid-cols-12 gap-5;
+      @apply grid grid-cols-1 lg:grid-cols-12 gap-5 px-5;
 
       h2 {
         @apply text-5xl md:text-6xl font-modern-negra max-w-lg;
@@ -213,7 +213,7 @@ body {
     }
 
     .top-grid {
-      @apply grid grid-cols-1 xl:grid-cols-12 gap-5 mb-5 md:px-0 px-5;
+      @apply grid grid-cols-1 xl:grid-cols-12 gap-5 mb-5 px-5;
 
       > div {
         @apply rounded-3xl overflow-hidden h-72 relative;
@@ -225,7 +225,7 @@ body {
     }
 
     .bottom-grid {
-      @apply grid grid-cols-1 xl:grid-cols-12 gap-5 md:px-0 px-5;
+      @apply grid grid-cols-1 xl:grid-cols-12 gap-5 px-5;
 
       > div {
         @apply rounded-3xl overflow-hidden h-72 relative;
@@ -258,7 +258,7 @@ body {
       }
 
       div {
-        @apply opacity-0 md:px-0 px-5 space-y-5 absolute md:-bottom-10 bottom-80 left-1/2 -translate-x-1/2;
+        @apply opacity-0 md:px-0 px-5 space-y-5 absolute md:bottom-[5rem] lg:bottom-[-35px] bottom-80 left-1/2 -translate-x-1/2;
 
         h3 {
           @apply md:text-5xl text-2xl text-center font-serif md:w-full w-80 text-white;
