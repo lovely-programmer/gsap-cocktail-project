@@ -28,7 +28,7 @@ export default function Art() {
       .to(".masked-img", {
         scale: 1.3,
         maskPosition: "center",
-        maskSize: "400%",
+        maskSize: "300%",
         duration: 1,
         ease: "power1.out",
       })
